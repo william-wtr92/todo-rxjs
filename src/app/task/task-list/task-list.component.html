@@ -1,0 +1,37 @@
+<div class="flex flex-col justify-center p-4">
+  <div class="flex justify-center items-center gap-10 mb-6">
+    <div class="flex gap-20">
+      <input class="border-black border-2 rounded-2xl px-2" #input type="text" (keyup)="handleSearch(input.value)" placeholder="Rechercher"/>
+      <h1 class="text-3xl font-bold">Todo List</h1>
+    </div>
+    <div class="flex">
+      <div class="flex justify-center items-center h-8 w-8 bg-red-500 rounded-2xl text-white">{{taskNotValidLength}}</div>
+      <div class="flex justify-center items-center h-8 w-8 bg-blue-500 rounded-2xl text-white relative right-1.5">{{taskLength}}</div>
+    </div>
+    <div class="flex gap-10  px-4 py-2 rounded-2xl ml-16 mt-3">
+      <div class="flex flex-col justify-center items-center">
+        <ng-icon name="heroAdjustmentsHorizontal" class="hover:cursor-pointer hover:scale-105" (click)="getFilter()"></ng-icon>
+        <label class="font-bold">Filter</label>
+      </div>
+      <div class="flex flex-col justify-center items-center">
+        <ng-icon name="heroPlusCircle" class="hover:cursor-pointer hover:scale-110" routerLink="/add"></ng-icon>
+        <label class="font-bold">Add</label>
+      </div>
+
+    </div>
+  </div>
+  <div *ngFor="let task of taskList" class="flex justify-between border-2 rounded-2xl p-4 font-bold my-2">
+    <h2 class="hover:cursor-pointer" (click)="goToTask(task)">{{task.name}}</h2>
+    <div class="flex justify-center items-center gap-6">
+      <div *ngIf="task.validate" class="h-6 w-6 bg-green-500 rounded-b-2xl relative bottom-5"></div>
+      <div *ngIf="!task.validate" class="h-6 w-6 bg-red-600 rounded-b-2xl relative bottom-5"></div>
+      <p [routerLink]="'/task/update/' + task.id">
+        <ng-icon name="heroPencilSquare" class="hover:cursor-pointer"></ng-icon>
+      </p>
+      <ng-icon name="heroTrash" class="hover:cursor-pointer" (click)="handleDelete(task.id)"></ng-icon>
+    </div>
+  </div>
+</div>
+<div *ngIf="filterValue" class="absolute left-10 top-0 p-4 bg-green-500 rounded-b-2xl font-bold text-white">
+  Filtre Activé
+</div>

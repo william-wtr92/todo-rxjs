@@ -1,0 +1,15 @@
+<div class="flex" *ngIf="taskDetail">
+  <div class="border-2 border-black rounded-2xl p-4 w-1/4 m-10 flex flex-col items-start">
+    <div class="flex flex-col gap-4 w-full">
+      <h1>Name: {{taskDetail.name}}</h1>
+      <p>Created at: {{taskDetail.created | date: 'MMMM d, y'}}</p>
+      <p>Validated: {{taskDetail.validate}}</p>
+      <p>Validated: {{taskDetail.type}}</p>
+      <p class="font-bold hover:cursor-pointer" (click)="goBack()">Go back</p>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!taskDetail" class="font-bold">
+  <app-loader></app-loader>
+</div>

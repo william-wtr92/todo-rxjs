@@ -1,0 +1,23 @@
+<form  (ngSubmit)="onSubmit(taskForm)" #taskForm="ngForm" class="m-10 p-4 flex flex-col gap-5 border-2 border-black rounded-2xl w-1/5">
+
+  <div class="flex flex-col gap-2">
+    <label class="ml-2 font-bold">Name</label>
+    <input class="border-2 border-black px-4 py-1 rounded-2xl" type="text" id="name" required [(ngModel)]="task.name" name="name" #name="ngModel"/>
+
+  </div>
+
+  <form class="flex flex-col gap-4">
+    <label class="ml-2 font-bold">Types</label>
+    <div *ngFor="let type of types">
+      <div class="flex gap-4 ml-3">
+        <input type="checkbox" [value]="type" (change)="selectType($event, type)" [disabled]="!isValid(type)">
+        <p>{{ type }}</p>
+      </div>
+    </div>
+  </form>
+
+  <div class="flex justify-center">
+    <button type="submit" class="bg-black text-white font-bold px-8 py-1 rounded-2xl" [disabled]="!taskForm.form.valid">Submit</button>
+  </div>
+</form>
+
