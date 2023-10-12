@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ITask} from "../task";
 import {Router} from "@angular/router";
 import {TaskService} from "../task.service";
+import {AuthService} from "../../auth.service";
 
 @Component({
   selector: 'app-task-list',
@@ -13,8 +14,9 @@ export class TaskListComponent implements OnInit {
   public filterValue: boolean = false;
   public taskLength: number;
   public taskNotValidLength: number;
+  public logoutValue: boolean;
 
-  constructor(private router: Router, private taskService: TaskService) {
+  constructor(private router: Router, private taskService: TaskService, private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -51,5 +53,14 @@ export class TaskListComponent implements OnInit {
 
   goToTask(task: ITask): void {
     this.router.navigate(['/task', task.id])
+  }
+
+  handleLogout(): void{
+    this.logoutValue = !this.logoutValue;
+  }
+
+  logOut(): void{
+    this.authService.logOut();
+    this.router.navigate(["/login"])
   }
 }

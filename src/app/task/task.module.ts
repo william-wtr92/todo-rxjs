@@ -11,12 +11,13 @@ import {TaskFormComponent} from "./task-form/task-form.component";
 import { EditTaskComponent } from './edit-task/edit-task.component';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { LoaderComponent } from './loader/loader.component';
+import {AuthGuard} from "../auth.guard";
 
 const taskRoutes: Routes = [
-  {path: "tasks", component: TaskListComponent},
-  {path: "task/:id", component: TaskDetailComponent},
-  {path:"task/update/:id", component: EditTaskComponent},
-  {path:"add", component: AddTaskComponent},
+  {path: "tasks", component: TaskListComponent, canActivate: [AuthGuard]},
+  {path: "task/:id", component: TaskDetailComponent, canActivate: [AuthGuard]},
+  {path:"task/update/:id", component: EditTaskComponent, canActivate: [AuthGuard]},
+  {path:"add", component: AddTaskComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

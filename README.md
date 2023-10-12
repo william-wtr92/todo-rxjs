@@ -1,5 +1,16 @@
 # Todo
 
+#### Create a directory in src/ named environments/, in this directory create a file named environment.ts and copy the code below
+
+```javascript
+export const environment = {
+  production: false,
+  name: 'urlogin',
+  pwd: 'urpwd'
+};
+```
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.5.
 
 ## Development server
